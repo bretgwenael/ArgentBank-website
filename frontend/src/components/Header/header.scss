@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+  }
+
+.logo {
+    width: 200px;
+    height: auto;
+}
+
+.nav ul li {
+    display: inline-block;
+    margin-left: 20px;
+  }
