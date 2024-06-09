@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Account from "../../components/Account/Account";
 import { getProfile } from '../../store/authSlice';
+import EditProfileForm from '../../components/EditProfileForm/EditProfilForm'; // Assurez-vous que le chemin est correct
 import "./user.scss";
 
 function User() {
   const dispatch = useDispatch();
-  const { error } = useSelector((state) => state.auth);
-  const user = useSelector((state) => state.auth.user);
-  const token = useSelector((state) => state.auth.token);
+  const { error, user, token } = useSelector((state) => state.auth);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     console.log('Token in User component:', token);
@@ -17,16 +17,21 @@ function User() {
     }
   }, [token, dispatch]);
 
-
   return (
     <main className="main bg-dark">
       <div className='welcome'>
         {error && <p>{error}</p>}
-        {user && (
+        {!isEditing && user && (
           <>
             <h1>Welcome back<br />{user.firstName} {user.lastName}</h1>
-            <button className="edit-button">Edit Name</button>
+            <button className="edit-button" onClick={() => setIsEditing(true)}>Edit Name</button>
           </>
+        )}
+        {isEditing && user && (
+          <EditProfileForm 
+            user={user}
+            onCancel={() => setIsEditing(false)}
+          />
         )}
       </div>
       <h2 className="sr-only">Accounts</h2>
