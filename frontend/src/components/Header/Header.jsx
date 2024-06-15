@@ -7,15 +7,17 @@ import logo from "../../assets/argentBankLogo.png"
 import "./header.scss"
 
 function Header() {
-    const token = useSelector((state) => state.auth.token);
-    const user = useSelector((state) => state.auth.user);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  // Sélection des données du store Redux avec useSelector
+  const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch(); // Obtention de la fonction dispatch pour déclencher des actions Redux
+  const navigate = useNavigate(); // Hook navigate pour la navigation
 
+    // Fonction de gestion de la déconnexion
     const handleSignOut = (event) => {
         event.preventDefault();
-        dispatch(logout());
-        navigate('/');
+        dispatch(logout()); // Dispatch de l'action logout pour déconnecter l'utilisateur
+        navigate('/'); // Redirection vers la page d'accueil après déconnexion
       };
 
     return (
