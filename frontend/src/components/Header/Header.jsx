@@ -31,7 +31,7 @@ function Header() {
         <ul>
           {token ? (
             <>
-              <li><FontAwesomeIcon icon={faUserCircle} className="sign-in-icon" /><Link to="" className='nav-login'>{user.userName}</Link></li>
+              <li><FontAwesomeIcon icon={faUserCircle} className="sign-in-icon" /><Link to="/user" className='nav-login'>{user.userName}</Link></li>
               <li><FontAwesomeIcon icon={faArrowRightFromBracket} /><Link onClick={handleSignOut} className='nav-logout'>Sign Out</Link></li>
             </>
           ) : (
